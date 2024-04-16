@@ -1,5 +1,5 @@
 // read in the data for the buildings
-d3.json("benchmarking.json").then(function (response) {
+d3.json("updatedData.json").then(function (response) {
 
     // Build 2014 array
     let buildings2014 = [];
@@ -12,8 +12,12 @@ d3.json("benchmarking.json").then(function (response) {
         let location = filtered2014[index];
 
         // For each building, create a marker, and bind a popup. For now - its the name and address
-        let building2014 = L.marker([location.Latitude, location.Longitude])
-            .bindPopup("<h3>" + location.PropertyName + "<h3><h3>Address: " + location.Address + "</h3>");
+        let building2014 = L.circle([location.Latitude, location.Longitude],
+            {
+                radius: location["GHG Intensity (kg CO2e/sq ft)"] * 5,
+                color: 'red'
+            })
+            .bindPopup("<h3>" + location.PropertyName + "<h3><h3>Address: " + location.Address + "</h3>" + location["GHG Intensity (kg CO2e/sq ft)"] + 'kg CO2e/sq ft');
 
         // Add the marker to the buildings2014 array
         buildings2014.push(building2014);
@@ -21,7 +25,7 @@ d3.json("benchmarking.json").then(function (response) {
     // Create a LAYER GROUP with the buildings2014 array
     var fourteen = L.layerGroup(buildings2014);
 
-//  2014 data and markers and layer group prepared!!!!
+    //  2014 data and markers and layer group prepared!!!!
 
 
     // Create the tile layer that will be the background of our map.
@@ -60,7 +64,7 @@ d3.json("benchmarking.json").then(function (response) {
 
     // Build 2015 array
     let buildings2015 = [];
-//Filter out only rows with DataYear = 2015 
+    //Filter out only rows with DataYear = 2015 
     var filtered2015 = response.filter(a => a.DataYear == 2015);
 
     // Loop through the 2015 array.
@@ -68,19 +72,36 @@ d3.json("benchmarking.json").then(function (response) {
         let location = filtered2015[index];
 
         // For each building, create a marker, and bind a popup 
-        let building2015 = L.marker([location.Latitude, location.Longitude])
-        .bindPopup("<h3>" + location.PropertyName + "<h3><h3>Address: " + location.Address + "</h3>");
+        let building2015 = L.circle([location.Latitude, location.Longitude], { radius: location["GHG Intensity (kg CO2e/sq ft)"] * 5 })
+            .bindPopup("<h3>" + location.PropertyName + "<h3><h3>Address: " + location.Address + "</h3>" + location["GHG Intensity (kg CO2e/sq ft)"] + 'kg CO2e/sq ft');
 
         // Add the marker to the 2015 array.
         buildings2015.push(building2015);
-         // Create a LAYER GROUP with the buildings2015 array
+        // Create a LAYER GROUP with the buildings2015 array
         var fifteen = L.layerGroup(buildings2015);
-
     };
-
-
-
     layerControl.addOverlay(fifteen, "2015");
 
 
+
+    d3.json("chicagoNeighborhoods.geojson").then(function (data) {
+        let neighborhoods = [];
+        
+        
+        for (let index = 0; index < 10; index++) {
+            
+            let location = data.features[index].geometry;
+            console.log(location);
+        
+            
+            let neighborhood = L.polygon([location.coordinates],{fillColor: "black", fillOpacity: 0.9})
+                .bindPopup("<h3>" + 'Neighborhood: ' + data.features[index].properties.sec_neigh + "</h3>");
+                console.log(neighborhood);
+            neighborhoods.push(neighborhood);
+
+            var areas = L.layerGroup(neighborhoods);
+        };
+      
+        layerControl.addOverlay(areas, "Neighborhood");
+    })
 })
