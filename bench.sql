@@ -1,9 +1,9 @@
--- Drop tables if they exist in the correct order to avoid foreign key constraint errors
+-- Drop tables if they exist 
 DROP TABLE IF EXISTS energy;
 DROP TABLE IF EXISTS property_type;
 DROP TABLE IF EXISTS area;
 
--- Create 'area' table with appropriate varchar lengths
+-- Create 'area' table 
 CREATE TABLE area (
     address VARCHAR(255) NOT NULL,        
     community_area VARCHAR(100) NOT NULL, 
@@ -17,7 +17,7 @@ CREATE TABLE property_type (
     PRIMARY KEY (id)
 );
 
--- Create 'energy' table with corrected data types and references
+-- Create 'energy' table 
 CREATE TABLE energy (
     data_year DATE NOT NULL,
     id INT NOT NULL,                        
