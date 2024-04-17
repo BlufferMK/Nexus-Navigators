@@ -1,17 +1,13 @@
 import React, {useRef, useEffect, useState} from "react";
-import {
-    Box, Select, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, StackDivider,
-} from "@chakra-ui/react";
-
+import {Box, Select, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack} from "@chakra-ui/react";
 import * as d3 from "d3";
 import {sortBy} from "lodash";
 import {Heading, Text} from "@chakra-ui/layout";
 
-/**
- * * Comparison of Electricity vs Natural gas usage by building built year
+/*
  * Energy score rating distribution by number of properties
- * Site EUI for multifamily property type, by year
  */
+ 
 
 const Chart1 = ({data}) => {
 

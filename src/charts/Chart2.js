@@ -1,12 +1,12 @@
 import React, {useEffect, useRef} from "react";
-import {Box,} from "@chakra-ui/react";
+import {Box} from "@chakra-ui/react";
 import * as d3 from "d3";
 import {Heading} from "@chakra-ui/layout";
 
 /**
  * Comparison of Electricity vs Natural gas usage by building built year
  */
-const Chart3 = ({data}) => {
+const Chart2 = ({data}) => {
     const ref = useRef();
 
     useEffect(() => {
@@ -113,15 +113,43 @@ const Chart3 = ({data}) => {
             .attr("y", height + margin.bottom - 25) // Position below the X-axis by 20 units from the bottom margin
             .text("Year Built"); // Text of the label
 
+            const legendData = [
+                { label: "Electricity", color: "#ffa200" },
+                { label: "Gas", color: "#00a2ff" }
+            ];
+    
+            const legend = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", `translate(50,${height + 50})`);
+    
+            // Add legend
+            legend.selectAll("rect")
+                .data(legendData)
+                .enter()
+                .append("rect")
+                .attr("x", -50)
+                .attr("y", (d, i) => i * 20)
+                .attr("width", 10)
+                .attr("height", 10)
+                .attr("fill", d => d.color);
+    
+            legend.selectAll("text")
+                .data(legendData)
+                .enter()
+                .append("text")
+                .attr("x", -30)
+                .attr("y", (d, i) => i * 20 + 9)
+                .text(d => d.label);
+
     }, [data]); // Dependency array to trigger rerender on data change
 
     return <Box>
         <Heading size='md' textAlign={'center'} p={5}>
-            Fuel Type Usage Proportion by Years
+            Fuel Type Usage Proportion by YearsS
         </Heading>
         <svg ref={ref}/>
     </Box>
 }
 
 
-export default Chart3;
+export default Chart2; 

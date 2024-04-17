@@ -1,10 +1,6 @@
 import {
-    Box,
-    
-    Flex,
-    
-    
-    
+    Box, 
+    Flex,  
 } from '@chakra-ui/react'
 import React, {useEffect, useState} from 'react'
 import "leaflet/dist/leaflet.css";
@@ -15,18 +11,11 @@ const filePath = '/data.json';
 const App = () => {
 
     const [data, setData] = useState([])
-    
-
-
-
     useEffect(() => {
         d3.json(filePath).then(data => {
             setData(data)
         });
     }, []);
-
-
-
 
     return (
         <Flex

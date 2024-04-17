@@ -1,7 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Box, Select,} from "@chakra-ui/react";
+import {Box, Select} from "@chakra-ui/react";
 import * as d3 from "d3";
 import {Heading, Text} from "@chakra-ui/layout";
+import {aggregateFrom} from "./ChartUtils";
 
 /**
  * Comparison of Electricity vs Natural gas usage by building built year
@@ -9,8 +10,7 @@ import {Heading, Text} from "@chakra-ui/layout";
 const Chart3 = ({data}) => {
     const ref = useRef();
 
-
-    const [selectedType, setSelectedType] = useState("Multifamily Housing")
+    const [selectedType, setSelectedType] = useState("ALL")
 
     useEffect(() => {
         if (data.length === 0) return;
@@ -21,11 +21,18 @@ const Chart3 = ({data}) => {
         const height = 600 - margin.top - margin.bottom;
 
         const processedData = data
-            .filter(d => d["Primary Property Type"] === selectedType)
-            .filter(d => d["Data Year"] && d["Weather Normalized Site EUI (kBtu\/sq ft)"])
+            .filter(d => {
+                if (selectedType === "ALL") {
+                    return d["Primary Property Type"]
+                } else {
+                    return aggregateFrom(d["Primary Property Type"]) === selectedType;
+                }
+
+            })
+            .filter(d => d["Data Year"] && d["Weather Normalized Site EUI (kBtu/sq ft)"])
             .map(d => ({
                 year: d["Data Year"],
-                eui: d["Weather Normalized Site EUI (kBtu\/sq ft)"]
+                eui: d["Weather Normalized Site EUI (kBtu/sq ft)"]
             }))
 
         // Group data by decade and sum up usages
@@ -33,9 +40,7 @@ const Chart3 = ({data}) => {
             .map(([year, values]) => ({
                 year,
                 eui: d3.mean(values, d => d.eui)
-            }))
-            .sort((a,b) => a.year-b.year);
-            
+            }));
 
         // Clear previous contents
         d3.select(ref.current).selectAll("*").remove();
@@ -56,7 +61,6 @@ const Chart3 = ({data}) => {
             .attr("transform", `translate(0,${height})`)
             .call(d3.axisBottom(x));
 
-        // Y axis
         const y = d3.scaleLinear()
             .domain([d3.min(averageData, d => d.eui)-5, d3.max(averageData, d => d.eui)])
             .range([height, 0]);
@@ -95,20 +99,19 @@ const Chart3 = ({data}) => {
         </Heading>
         <svg ref={ref}/>
 
-        <Text p={3} align={"center"}>
+        <Text p={2} align={"left"}>
             Property type
         </Text>
-        <Select defaultValue={"Multifamily Housing"}
+        <Select defaultValue={"ALL"}
                 onChange={(e) => {
                     setSelectedType(e.target.value)
                 }}>
-
-            {data.length > 1 && d3.groups(data.filter(d => d["Primary Property Type"]), d => d["Primary Property Type"])
+            <option value={"ALL"}>All</option>
+            {data.length > 1 && d3.groups(data.filter(d => aggregateFrom(d["Primary Property Type"])), d => aggregateFrom(d["Primary Property Type"]))
                 .map(([type, values]) =>
                     <option value={type}>{type}</option>
                 )
             }
-
         </Select>
     </Box>
 }
