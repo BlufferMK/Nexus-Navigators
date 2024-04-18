@@ -1,0 +1,16 @@
+html,
+body,
+#map-id {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+=======
+html,
+body,
+#map-id {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+>>>>>>> 78128c2e97a60d8158e9183ee4862a6b0a3620f1

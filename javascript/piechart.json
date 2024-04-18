@@ -1,0 +1,58 @@
+{
+    "College\/University": {
+        "Gross Floor Area - Buildings (sq ft)": 11778259.0,
+        "Weather Normalized Source EUI (kBtu\/sq ft)": 12986.4,
+        "Total GHG Emissions (Metric Tons CO2e)": 105317.5,
+        "Percent of Total Area": 1.3391610318,
+        "Percent of Total GHG Emissions": 2.1608385254
+    },
+    "Healthcare": {
+        "Gross Floor Area - Buildings (sq ft)": 32200647.0,
+        "Weather Normalized Source EUI (kBtu\/sq ft)": 12507.3,
+        "Total GHG Emissions (Metric Tons CO2e)": 521142.2,
+        "Percent of Total Area": 3.6611397032,
+        "Percent of Total GHG Emissions": 10.6924693708
+    },
+    "K-12 Schools": {
+        "Gross Floor Area - Buildings (sq ft)": 40723699.0,
+        "Weather Normalized Source EUI (kBtu\/sq ft)": 43750.6,
+        "Total GHG Emissions (Metric Tons CO2e)": 265582.7,
+        "Percent of Total Area": 4.6301911658,
+        "Percent of Total GHG Emissions": 5.4490595564
+    },
+    "Lodging": {
+        "Gross Floor Area - Buildings (sq ft)": 33203204.0,
+        "Weather Normalized Source EUI (kBtu\/sq ft)": 18784.7,
+        "Total GHG Emissions (Metric Tons CO2e)": 279928.3,
+        "Percent of Total Area": 3.7751281345,
+        "Percent of Total GHG Emissions": 5.7433935954
+    },
+    "Multifamily Housing": {
+        "Gross Floor Area - Buildings (sq ft)": 339823069.3000000119,
+        "Weather Normalized Source EUI (kBtu\/sq ft)": 176451.0,
+        "Total GHG Emissions (Metric Tons CO2e)": 1756238.8999999999,
+        "Percent of Total Area": 38.6371035056,
+        "Percent of Total GHG Emissions": 36.0334101634
+    },
+    "Office": {
+        "Gross Floor Area - Buildings (sq ft)": 184321670.0,
+        "Weather Normalized Source EUI (kBtu\/sq ft)": 51764.1,
+        "Total GHG Emissions (Metric Tons CO2e)": 1151148.2,
+        "Percent of Total Area": 20.9569510886,
+        "Percent of Total GHG Emissions": 23.61853803
+    },
+    "Other": {
+        "Gross Floor Area - Buildings (sq ft)": 217891241.900000006,
+        "Weather Normalized Source EUI (kBtu\/sq ft)": 51412.4,
+        "Total GHG Emissions (Metric Tons CO2e)": 633855.4,
+        "Percent of Total Area": 24.773734413,
+        "Percent of Total GHG Emissions": 13.0050482383
+    },
+    "Retail": {
+        "Gross Floor Area - Buildings (sq ft)": 19583429.0,
+        "Weather Normalized Source EUI (kBtu\/sq ft)": 30238.5,
+        "Total GHG Emissions (Metric Tons CO2e)": 160704.9,
+        "Percent of Total Area": 2.2265909575,
+        "Percent of Total GHG Emissions": 3.2972425203
+    }
+}
