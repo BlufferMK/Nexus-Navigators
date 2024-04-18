@@ -1,13 +1,11 @@
 import * as React from "react";
 
-import {Badge, Box, Center, Divider, Heading, Text, VStack} from "@chakra-ui/layout";
-import {HStack, IconButton} from "@chakra-ui/react";
-import {MdAutoFixNormal} from "react-icons/md";
+import {Text} from "@chakra-ui/layout";
+import {HStack} from "@chakra-ui/react";
 import {FaSadCry} from "react-icons/fa";
 import {
     Modal,
     ModalBody,
-    ModalCloseButton,
     ModalContent,
     ModalFooter,
     ModalHeader,

@@ -40,7 +40,8 @@ const Chart3 = ({data}) => {
             .map(([year, values]) => ({
                 year,
                 eui: d3.mean(values, d => d.eui)
-            }));
+            }))
+            .sort((a,b) => a.year - b.year);
 
         // Clear previous contents
         d3.select(ref.current).selectAll("*").remove();
@@ -51,7 +52,7 @@ const Chart3 = ({data}) => {
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        // X axis
+        // Add the x-axis
         const x = d3.scaleBand()
             .range([0, width])
             .domain(averageData.map(d => d.year))
@@ -60,7 +61,7 @@ const Chart3 = ({data}) => {
         svg.append("g")
             .attr("transform", `translate(0,${height})`)
             .call(d3.axisBottom(x));
-
+        //Add the y-axis
         const y = d3.scaleLinear()
             .domain([d3.min(averageData, d => d.eui)-5, d3.max(averageData, d => d.eui)])
             .range([height, 0]);

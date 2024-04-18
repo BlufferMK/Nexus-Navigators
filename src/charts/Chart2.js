@@ -57,7 +57,7 @@ const Chart2 = ({data}) => {
             .append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        // X axis
+        // Add the x-axis
         const x = d3.scaleBand()
             .range([0, width])
             .domain(processedData.map(d => d.decade))
@@ -67,7 +67,7 @@ const Chart2 = ({data}) => {
             .attr("transform", `translate(0,${height})`)
             .call(d3.axisBottom(x));
 
-        // Y axis
+        // Add the y-axis
         const y = d3.scaleLinear()
             .domain([0, 100])
             .range([height, 0]);
@@ -145,7 +145,7 @@ const Chart2 = ({data}) => {
 
     return <Box>
         <Heading size='md' textAlign={'center'} p={5}>
-            Fuel Type Usage Proportion by YearsS
+            Fuel Type Usage Proportion by Years
         </Heading>
         <svg ref={ref}/>
     </Box>

@@ -11,7 +11,7 @@ import {Heading, Text} from "@chakra-ui/layout";
 
 const Chart1 = ({data}) => {
 
-
+// Function for setting and updating the initial values 
     const [yearRange, setYearRange] = useState([])
     const [selectedYearMax, setSelectedYearMax] = useState(undefined)
 
@@ -122,7 +122,7 @@ const Chart1 = ({data}) => {
     return (
         <Box p={5}>
             <Heading size='md' textAlign={'center'} p={5}>
-                Average ENERGY STAR Score by Year
+                Median ENERGY STAR Score by Year
             </Heading>
             <svg ref={ref}/>
             <Text p={3} align={"center"}>

@@ -1,1 +1,1 @@
-Libraries used: react and chakra UI. In order to view charts in an interactive manner, npm install and npm run start.
+Chart 1. (Energy Star Score), Chart 2. (Fuel Type Usage), Chart 3. (Average EUI by Year) can be found in src folder. data.json can be found in public folder. Libraries used: react and chakra UI. In order to view charts in an interactive manner, npm install and npm run start.
